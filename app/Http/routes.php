@@ -12,5 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.home');
 });
+Route::post('/activities', 'MainController@Activities');
+
+Route::get('/track', function () {
+    return view('pages.track');
+});
+Route::post('/track/users', 'MainController@Users');
+Route::post('/track/drinkType', 'MainController@DrinkType');
+Route::post('/track/recode', 'MainController@drinkRecode');
+
+Route::get('/deposit', function () {
+    return view('pages.deposit');
+});
+Route::post('/deposit/users', 'MainController@Users');
+Route::post('/deposit/recode', 'MainController@depositRecode');
+Route::get('/deposit/{id}', 'MainController@Confirm');
+
+Route::get('/balance', function () {
+    return view('pages.balance');
+});
+Route::post('/balance/getData', 'MainController@getData');

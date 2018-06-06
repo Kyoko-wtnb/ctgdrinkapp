@@ -2,6 +2,8 @@
 
 return [
 
+	'devemail' => env('APP_DEVEMAIL', ''),
+	'depositemail' => env('APP_DEPOSIT', ''),
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -151,10 +153,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        ctgdrinkapp\Providers\AppServiceProvider::class,
+        ctgdrinkapp\Providers\AuthServiceProvider::class,
+        ctgdrinkapp\Providers\EventServiceProvider::class,
+        ctgdrinkapp\Providers\RouteServiceProvider::class,
+
 
     ],
 

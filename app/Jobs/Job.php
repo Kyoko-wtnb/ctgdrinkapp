@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Jobs;
+namespace ctgdrinkapp\Jobs;
 
 use Illuminate\Bus\Queueable;
 

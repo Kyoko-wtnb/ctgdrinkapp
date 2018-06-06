@@ -1,0 +1,10 @@
+.bgimg{
+	background-position: center;
+	background-size: cover;
+	background-image: url("/image/head1.png");
+	min-height: 95%;
+}
+
+header h1{
+	color: white;
+}

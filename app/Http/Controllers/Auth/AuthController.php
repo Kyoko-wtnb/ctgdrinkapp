@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace ctgdrinkapp\Http\Controllers\Auth;
 
-use App\User;
+use ctgdrinkapp\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use ctgdrinkapp\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
