@@ -1,7 +1,7 @@
 <?php
 
 return [
-
+	'subdir' => env('APP_SUBDIR', ''),
 	'devemail' => env('APP_DEVEMAIL', ''),
 	'depositemail' => env('APP_DEPOSIT', ''),
     /*

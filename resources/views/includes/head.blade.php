@@ -1,4 +1,5 @@
 <meta charset="utf-8"/>
+<meta name="viewport", content="width=device-width, initial-scale=1"/>
 <title>CTG drink tracker</title>
 <link rel="stylesheet" href="{!! URL::asset('css/style.css') !!}">
 <link rel="stylesheet" href="//www.w3schools.com/w3css/4/w3.css">
