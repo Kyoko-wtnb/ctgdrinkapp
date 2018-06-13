@@ -68,6 +68,10 @@ class MainController extends Controller
 		DB::table('deposits')->where('id', $id)->update(['status'=>'APPROVED']);
 		return view('pages.confirm');
 	}
+	public function Cancel($id){
+		DB::table('deposits')->where('id', $id)->update(['status'=>'CANCELLED']);
+		return view('pages.cancel');
+	}
 
 	public function getData(){
 		$results = DB::select('SELECT id, name, (depo-cost) AS balance, last, pend FROM (SELECT vunetid AS id, sum(cost) AS cost, max(date) AS last FROM drinks GROUP BY vunetid) LEFT JOIN (SELECT id1 AS id3, depo, pend FROM (SELECT vunetid AS id1, sum(deposit) AS depo FROM deposits WHERE status="APPROVED" GROUP BY vunetid) LEFT JOIN (SELECT vunetid AS id2, sum(deposit) AS pend from deposits WHERE status="PENDING" GROUP BY vunetid) ON id1=id2) ON vunetid = id3 INNER JOIN members on id=vunetid');

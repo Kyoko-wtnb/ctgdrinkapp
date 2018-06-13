@@ -28,7 +28,8 @@ Route::get('/deposit', function () {
 });
 Route::post('/deposit/users', 'MainController@Users');
 Route::post('/deposit/recode', 'MainController@depositRecode');
-Route::get('/deposit/{id}', 'MainController@Confirm');
+Route::get('/deposit/confirm/{id}', 'MainController@Confirm');
+Route::get('/deposit/cancel/{id}', 'MainController@Cancel');
 
 Route::get('/balance', function () {
     return view('pages.balance');
