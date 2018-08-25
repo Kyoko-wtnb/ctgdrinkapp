@@ -35,3 +35,4 @@ Route::get('/balance', function () {
     return view('pages.balance');
 });
 Route::post('/balance/getData', 'MainController@getData');
+Route::post('/balance/getIndivDrinks', 'MainController@getIndivDrinks');

@@ -74,7 +74,16 @@ class MainController extends Controller
 	}
 
 	public function getData(){
-		$results = DB::select('SELECT id, name, (depo-cost) AS balance, last, pend FROM (SELECT vunetid AS id, sum(cost) AS cost, max(date) AS last FROM drinks GROUP BY vunetid) LEFT JOIN (SELECT id1 AS id3, depo, pend FROM (SELECT vunetid AS id1, sum(deposit) AS depo FROM deposits WHERE status="APPROVED" GROUP BY vunetid) LEFT JOIN (SELECT vunetid AS id2, sum(deposit) AS pend from deposits WHERE status="PENDING" GROUP BY vunetid) ON id1=id2) ON vunetid = id3 INNER JOIN members on id=vunetid');
+		#$results = DB::select('SELECT id, name, (depo-cost) AS balance, last, pend FROM (SELECT vunetid AS id, sum(cost) AS cost, max(date) AS last FROM drinks GROUP BY vunetid) LEFT JOIN (SELECT id1 AS id3, depo, pend FROM (SELECT vunetid AS id1, sum(deposit) AS depo FROM deposits WHERE status="APPROVED" GROUP BY vunetid) LEFT JOIN (SELECT vunetid AS id2, sum(deposit) AS pend from deposits WHERE status="PENDING" GROUP BY vunetid) ON id1=id2) ON vunetid = id3 INNER JOIN members on id=vunetid');
+		$script = storage_path().'/scripts/getBalance.py';
+		$db = database_path().'/database.sqlite';
+		$results = shell_exec("python $script $db");
 		return $results;
+	}
+
+	public function getIndivDrinks(Request $request){
+		$id = $request->input('id');
+		$drink = DB::select('SELECT * FROM drinks WHERE vunetid=? ORDER BY date ASC LIMIT 10', [$id]);
+		return $drink;
 	}
 }
