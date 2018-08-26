@@ -1,7 +1,7 @@
 .bgimg{
 	background-position: center;
 	background-size: cover;
-	background-image: url("/ctgdrinkapp/image/head1.png");
+	background-image: url("../image/head1.png");
 	min-height: 95%;
 }
 
