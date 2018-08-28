@@ -52,6 +52,9 @@ def main():
 	for row in c.execute('SELECT vunetid, max(date) FROM drinks GROUP BY vunetid ORDER BY vunetid'):
 		tmp.append([str(row[0]), str(row[1])])
 	tmp = np.array(tmp)
+	if len(tmp)>0:
+		ind = ArrayIn(out[:,0], tmp[:,0])
+		out[ind, 4] = tmp[:,1]
 
 	print json.dumps({"data":out.tolist()})
 
