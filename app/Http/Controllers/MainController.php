@@ -83,7 +83,7 @@ class MainController extends Controller
 
 	public function getIndivDrinks(Request $request){
 		$id = $request->input('id');
-		$drink = DB::select('SELECT * FROM drinks WHERE vunetid=? ORDER BY date ASC LIMIT 10', [$id]);
+		$drink = DB::select('SELECT * FROM drinks WHERE vunetid=? ORDER BY date DESC LIMIT 10', [$id]);
 		return $drink;
 	}
 }
