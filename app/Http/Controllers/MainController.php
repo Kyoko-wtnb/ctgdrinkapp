@@ -15,7 +15,7 @@ class MainController extends Controller
 	}
 
 	public function Users(){
-		$results = DB::select('SELECT vunetid, name FROM members');
+		$results = DB::select('SELECT vunetid, name FROM members WHERE state="active"');
 		return $results;
 	}
 

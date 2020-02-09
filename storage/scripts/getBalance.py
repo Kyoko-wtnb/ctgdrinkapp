@@ -17,14 +17,14 @@ def main():
 
 	### extract all members
 	out = []
-	for row in c.execute('SELECT vunetid, name FROM members ORDER BY vunetid'):
+	for row in c.execute('SELECT vunetid, name FROM members WHERE state="active" ORDER BY vunetid'):
 		out.append([str(row[0]), str(row[1])])
 	out = np.c_[out, [0.0]*len(out), [0.0]*len(out), ["null"]*len(out)]
 
 	### add balance
 	tmp = []
 	for row in c.execute('SELECT vunetid, sum(deposit) FROM deposits WHERE status="APPROVED" GROUP BY vunetid ORDER BY vunetid'):
-		tmp.append([str(row[0]), str(row[1])])
+		if str(row[0]) in out[:,0]: tmp.append([str(row[0]), str(row[1])])
 	tmp = np.array(tmp)
 
 	ind = ArrayIn(out[:,0], tmp[:,0])
@@ -32,7 +32,7 @@ def main():
 
 	tmp = []
 	for row in c.execute('SELECT vunetid, sum(cost) FROM drinks GROUP BY vunetid ORDER BY vunetid'):
-		tmp.append([str(row[0]), str(row[1])])
+		if str(row[0]) in out[:,0]: tmp.append([str(row[0]), str(row[1])])
 	tmp = np.array(tmp)
 	if len(tmp)>0:
 		ind = ArrayIn(out[:,0], tmp[:,0])
@@ -41,7 +41,7 @@ def main():
 	### add pending deposit
 	tmp = []
 	for row in c.execute('SELECT vunetid, sum(deposit) FROM deposits WHERE status="PENDING" GROUP BY vunetid ORDER BY vunetid'):
-		tmp.append([str(row[0]), str(row[1])])
+		if str(row[0]) in out[:,0]: tmp.append([str(row[0]), str(row[1])])
 	tmp = np.array(tmp)
 	if len(tmp)>0:
 		ind = ArrayIn(out[:,0], tmp[:,0])
@@ -50,7 +50,7 @@ def main():
 	### add most recent drink
 	tmp = []
 	for row in c.execute('SELECT vunetid, max(date) FROM drinks GROUP BY vunetid ORDER BY vunetid'):
-		tmp.append([str(row[0]), str(row[1])])
+		if str(row[0]) in out[:,0]: tmp.append([str(row[0]), str(row[1])])
 	tmp = np.array(tmp)
 	if len(tmp)>0:
 		ind = ArrayIn(out[:,0], tmp[:,0])
